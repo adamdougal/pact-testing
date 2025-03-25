@@ -1,0 +1,109 @@
+{
+  "consumer": {
+    "name": "OrderConsumer"
+  },
+  "provider": {
+    "name": "PactDemoProvider"
+  },
+  "interactions": [
+    {
+      "description": "a request to get an order by id",
+      "providerState": "order with ID 88 exists",
+      "request": {
+        "method": "GET",
+        "path": "/order/88",
+        "headers": {
+          "Accept": "application/json"
+        }
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "body": {
+          "id": "88",
+          "user": {
+            "id": "881985",
+            "firstName": "Marty",
+            "lastName": "McFly",
+            "email": "McFlyinTime@futurebound.com"
+          },
+          "items": [
+            {
+              "id": "1",
+              "name": "Hoverboard Revamp Kit",
+              "description": "Turn your trusty hoverboard into a sleek, futuristic ride. This upgrade kit comes complete with LED accents and aerodynamic enhancements—perfect for zipping through time and space.",
+              "price": 159.99
+            },
+            {
+              "id": "2",
+              "name": "Time-Traveling Sneaker Laces",
+              "description": "Infuse your kicks with retro-futuristic flair! These self-adjusting, luminous sneaker laces are crafted for high-speed adventures, ensuring your style is always ahead of its time.",
+              "price": 24.99
+            }
+          ],
+          "totalPrice": 184.98
+        },
+        "matchingRules": {
+          "$.body.id": {
+            "match": "type"
+          },
+          "$.body.user.id": {
+            "match": "type"
+          },
+          "$.body.user.firstName": {
+            "match": "type"
+          },
+          "$.body.user.lastName": {
+            "match": "type"
+          },
+          "$.body.user.email": {
+            "match": "type"
+          },
+          "$.body.items": {
+            "min": 1
+          },
+          "$.body.items[*].id": {
+            "match": "type"
+          },
+          "$.body.items[*].name": {
+            "match": "type"
+          },
+          "$.body.items[*].description": {
+            "match": "type"
+          },
+          "$.body.items[*].price": {
+            "match": "type"
+          },
+          "$.body.totalPrice": {
+            "match": "type"
+          }
+        }
+      }
+    },
+    {
+      "description": "a request to get a non-existent order",
+      "providerState": "order with ID 999 does not exist",
+      "request": {
+        "method": "GET",
+        "path": "/order/999",
+        "headers": {
+          "Accept": "text/plain"
+        }
+      },
+      "response": {
+        "status": 404,
+        "headers": {
+          "Content-Type": "text/plain"
+        },
+        "body": "Order not found"
+      }
+    }
+  ],
+  "metadata": {
+    "pactSpecification": {
+      "version": "3.0.0"
+    }
+  }
+}
