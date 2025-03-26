@@ -12,14 +12,3 @@ tasks.named('test') {
         events "passed", "skipped", "failed"
     }
 }
-
-task copyPacts(type: Copy) {
-	description = 'Copies the generated Pact json file to the provider resources directory'
-
-	from('build/pacts/')
-	into('../pacts/')
-}
-
-test {
-    finalizedBy copyPacts
-}

@@ -4,3 +4,4 @@
 !gradle-wrapper.jar
 !gradle-wrapper.properties
 **/bin/
+**/target/

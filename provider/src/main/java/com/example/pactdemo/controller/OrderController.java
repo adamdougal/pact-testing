@@ -28,7 +28,7 @@ public class OrderController {
     public ResponseEntity<?> order(@PathVariable("id") @NotBlank(message = "Order ID cannot be empty") String id) {
 		Optional<Order> maybeOrder = orderStore.getOrder(id);
 		if (maybeOrder.isEmpty()) {
-		    return ResponseEntity.status(404).body("Order not found");
+		    return ResponseEntity.status(404).body("{\"error\": \"Order not found\"}");
         }
 
 		return ResponseEntity.ok().body(maybeOrder.get());

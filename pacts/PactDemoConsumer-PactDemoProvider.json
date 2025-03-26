@@ -1,0 +1,227 @@
+{
+  "consumer": {
+    "name": "PactDemoConsumer"
+  },
+  "interactions": [
+    {
+      "description": "a request to get an order by id",
+      "key": "2aea701b",
+      "pending": false,
+      "providerStates": [
+        {
+          "name": "order with ID 88 exists"
+        }
+      ],
+      "request": {
+        "headers": {
+          "Accept": [
+            "application/json"
+          ]
+        },
+        "method": "GET",
+        "path": "/order/88"
+      },
+      "response": {
+        "body": {
+          "content": {
+            "id": "88",
+            "items": [
+              {
+                "description": "Turn your trusty hoverboard into a sleek, futuristic ride. This upgrade kit comes complete with LED accents and aerodynamic enhancements\u2014perfect for zipping through time and space.",
+                "id": "1",
+                "name": "Hoverboard Revamp Kit",
+                "price": 159.99
+              },
+              {
+                "description": "Infuse your kicks with retro-futuristic flair! These self-adjusting, luminous sneaker laces are crafted for high-speed adventures, ensuring your style is always ahead of its time.",
+                "id": "2",
+                "name": "Time-Traveling Sneaker Laces",
+                "price": 24.99
+              }
+            ],
+            "totalPrice": 184.98,
+            "user": {
+              "email": "McFlyinTime@futurebound.com",
+              "firstName": "Marty",
+              "id": "881985",
+              "lastName": "McFly"
+            }
+          },
+          "contentType": "application/json",
+          "encoded": false
+        },
+        "headers": {
+          "Content-Type": [
+            "application/json"
+          ]
+        },
+        "matchingRules": {
+          "body": {
+            "$.id": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            },
+            "$.items[0].description": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            },
+            "$.items[0].id": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            },
+            "$.items[0].name": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            },
+            "$.items[0].price": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "number"
+                }
+              ]
+            },
+            "$.items[1].description": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            },
+            "$.items[1].id": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            },
+            "$.items[1].name": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            },
+            "$.items[1].price": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "number"
+                }
+              ]
+            },
+            "$.totalPrice": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "number"
+                }
+              ]
+            },
+            "$.user.email": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            },
+            "$.user.firstName": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            },
+            "$.user.id": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            },
+            "$.user.lastName": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            }
+          }
+        },
+        "status": 200
+      },
+      "transport": "http",
+      "type": "Synchronous/HTTP"
+    },
+    {
+      "description": "a request to get an order by id that does not exist",
+      "key": "c41c23a7",
+      "pending": false,
+      "providerStates": [
+        {
+          "name": "order with ID 999 does not exist"
+        }
+      ],
+      "request": {
+        "headers": {
+          "Accept": [
+            "application/json"
+          ]
+        },
+        "method": "GET",
+        "path": "/order/999"
+      },
+      "response": {
+        "body": {
+          "content": {
+            "error": "Order not found"
+          },
+          "contentType": "application/json",
+          "encoded": false
+        },
+        "headers": {
+          "Content-Type": [
+            "application/json"
+          ]
+        },
+        "status": 404
+      },
+      "transport": "http",
+      "type": "Synchronous/HTTP"
+    }
+  ],
+  "metadata": {
+    "pact-jvm": {
+      "version": "4.6.17"
+    },
+    "pactSpecification": {
+      "version": "4.0"
+    }
+  },
+  "provider": {
+    "name": "PactDemoProvider"
+  }
+}
