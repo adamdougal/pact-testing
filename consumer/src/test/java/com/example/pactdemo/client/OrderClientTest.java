@@ -1,5 +1,7 @@
 package com.example.pactdemo.client;
 
+import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.Map;
 
 import org.junit.jupiter.api.Test;
@@ -16,6 +18,7 @@ import au.com.dius.pact.core.model.annotations.Pact;
 import au.com.dius.pact.core.model.annotations.PactDirectory;
 
 import static au.com.dius.pact.consumer.dsl.LambdaDsl.newJsonBody;
+import static java.time.ZoneOffset.UTC;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -27,7 +30,6 @@ public class OrderClientTest {
 
       @Pact(provider = "PactDemoProvider", consumer = "PactDemoConsumer")
       public V4Pact orderPact(PactDslWithProvider builder) {
-
             LambdaDslJsonBody expectedResponseBody = newJsonBody((expectedOrder) -> {
                   expectedOrder.stringType("id", "88");
                   expectedOrder.object("user", (user) -> {
@@ -53,6 +55,7 @@ public class OrderClientTest {
                         });
                   });
                   expectedOrder.numberType("totalPrice", 184.98);
+                  expectedOrder.date("orderDate", "yyyy-MM-dd'T'HH:mm:ss", Date.from(LocalDateTime.parse("2015-10-21T10:30:00").toInstant(UTC))); 
             });
 
             return builder

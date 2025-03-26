@@ -39,6 +39,7 @@
                 "price": 24.99
               }
             ],
+            "orderDate": "2015-10-21T10:30:00",
             "totalPrice": 184.98,
             "user": {
               "email": "McFlyinTime@futurebound.com",
@@ -126,6 +127,15 @@
               "matchers": [
                 {
                   "match": "number"
+                }
+              ]
+            },
+            "$.orderDate": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "format": "yyyy-MM-dd'T'HH:mm:ss",
+                  "match": "date"
                 }
               ]
             },
