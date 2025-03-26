@@ -5,3 +5,8 @@ subprojects {
         mavenCentral()
     }
 }
+
+task testAll {
+    dependsOn ':consumer:test'
+    dependsOn ':provider:test'
+}
