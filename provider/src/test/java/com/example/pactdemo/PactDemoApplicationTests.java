@@ -24,15 +24,15 @@ class PactDemoApplicationTests {
 	int port;
 
 	@BeforeEach
-	void before(PactVerificationContext context) {
-	context.setTarget(new HttpTestTarget("localhost", port));
-	}
-	
+    void before(PactVerificationContext context) {
+        context.setTarget(new HttpTestTarget("localhost", port));
+    }
+
 	@TestTemplate
-	@ExtendWith(PactVerificationInvocationContextProvider.class)
-	void verifyPact(PactVerificationContext context) {
-	context.verifyInteraction();
-	}
+    @ExtendWith(PactVerificationInvocationContextProvider.class)
+    void verifyPact(PactVerificationContext context) {
+        context.verifyInteraction();
+    }
 
 	@State({
 		"order with ID 88 exists",
