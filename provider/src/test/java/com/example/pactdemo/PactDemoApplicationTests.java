@@ -38,7 +38,7 @@ class PactDemoApplicationTests {
 		"order with ID 88 exists",
 		"order with ID 999 does not exist"
 	})
-	void testPactWhenOrdersExist() {
+	void testPactWhenOrderWithIdRequestReceived() {
 		// This method is used to set up the state of the provider before the interaction is verified.
 		// You can use this method to create any necessary data or perform any actions needed to set up the state.
 		// For example, you could create a mock order with ID 88 in your database or in-memory store.
